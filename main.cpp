@@ -1,8 +1,21 @@
 #include "ComplexPlane.h"
 
 int main() {
-	RenderWindow window(VideoMode(50, 80), "Mandelbrot test");
-	ComplexPlane plane(50, 80);
+	RenderWindow window(VideoMode(VideoMode::getDesktopMode().width/3, VideoMode::getDesktopMode().height/3), "Mandelbrot test");
+	ComplexPlane plane(VideoMode::getDesktopMode().width / 3, VideoMode::getDesktopMode().height / 3);
+
+	Font font;
+	Text text;
+	if (!font.loadFromFile("calibri.ttf")) {
+		cerr << "Calibri failed to load." << endl;
+		return 1;
+	}
+
+	text.setFont(font);
+	plane.loadText(text);
+	text.setCharacterSize(15);
+	text.setFillColor(Color::White);
+	text.setStyle(Text::Italic | Text::Underlined | Text::Bold);
 
 	while (window.isOpen()) {
 		Event event;
@@ -33,8 +46,14 @@ int main() {
 			}
 		}
 
+	
+		plane.updateRender();
+		
+		plane.loadText(text);
+
 		window.clear();
 		window.draw(plane);
+		window.draw(text);
 		window.display();
 	}
 

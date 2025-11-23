@@ -5,10 +5,11 @@
 #include <sstream>
 #include <vector>
 #include <string>
+
 using namespace sf;
 using namespace std;
 
-const unsigned int MAX_ITER = 64;
+const unsigned int MAX_ITER = 128;
 const float BASE_WIDTH = 4.0;
 const float BASE_HEIGHT = 4.0;
 const float BASE_ZOOM = 0.5;
@@ -22,7 +23,7 @@ class ComplexPlane : public Drawable {
 	State m_State{};
 	Vector2f m_mouseLocation, m_plane_center, m_plane_size;
 	Vector2i m_pixel_size;
-	int m_zoomcount{};
+	int m_zoomCount{};
 	float m_aspectRatio;
 
 	public:
