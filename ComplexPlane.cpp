@@ -28,7 +28,7 @@ void ComplexPlane::draw(RenderTarget& target, RenderStates states) const {
 void ComplexPlane::concurrentRender(ComplexPlane* objPtr, size_t startRow, size_t endRow) {
 	for (size_t i = startRow; i < endRow; i++)
 	{
-		for (size_t j = 0; j < objPtr->m_pixel_size.x; j++)
+		for (size_t j = 0; j < (size_t)objPtr->m_pixel_size.x; j++)
 		{
 			//cout << "I" << i << "  : J  " << j << endl;
 			objPtr->m_vArray[j + i * objPtr->m_pixel_size.x].position = { (float)j,(float)i };
