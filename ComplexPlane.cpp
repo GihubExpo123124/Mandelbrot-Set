@@ -169,37 +169,56 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
 	}
 	else if (count >= 0 && count <= 22)
 	{
-		r = 191;
+		size_t rangePos = count; // current position in the color range
+		size_t rangeLen = 22; //total len of color range
+		float prog = (float)rangePos / (float)rangeLen; // prog tells you how far you are into the gradient (0=beginning, 1=end)
+
+		r = 191 + (int)(80 * prog);
 		g = 0;
 		b = 255;
 		//PURPLE
 	}
 	else if (count >= 23 && count <= 46)
 	{
+		size_t rangePos = count - 23;
+		size_t rangeLen = 46 - 23;
+		float prog = (float)rangePos / (float)rangeLen;
+
 		r = 72;
-		g = 209;
+		g = 209 + (int)(80 * prog);
 		b = 204;
 		//MEDIUM TURQUOISE
 	}
 	else if (count >= 47 && count <= 70)
 	{
+		size_t rangePos = count - 47;
+		size_t rangeLen = 70 - 47;
+		float prog = (float)rangePos / (float)rangeLen;
+
 		r = 0;
 		g = 255;
-		b = 127;
+		b = 127 + (int)(80 * prog);
 		//SPRING GREEN
 	}
 	else if (count >= 71 && count <= 94)
 	{
-		r = 255;
-		g = 255;
+		size_t rangePos = count - 71;
+		size_t rangeLen = 94 - 71;
+		float prog = (float)rangePos / (float)rangeLen;
+
+		r = 255 + (int)(80 * prog);
+		g = 255 + (int)(80 * prog);
 		b = 0;
 		//YELLOW
 	}
 	else if (count >= 95 && count <= 127)
 	{
+		size_t rangePos = count - 95;
+		size_t rangeLen = 127 - 95;
+		float prog = (float)rangePos / (float)rangeLen;
 		r = 220;
-		g = 20;
-		b = 60;
+		g = 20 + (int)(80 * prog);
+		b = 60 + (int)(80 * prog);
 		//CRIMSON
 	}
 
