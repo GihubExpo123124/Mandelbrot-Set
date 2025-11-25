@@ -20,12 +20,12 @@ enum class State {
 };
 
 class ComplexPlane : public Drawable {
+	float m_aspectRatio;
 	VertexArray m_vArray;
 	State m_State;
 	Vector2f m_mouseLocation, m_plane_center, m_plane_size;
 	Vector2i m_pixel_size;
 	int m_zoomCount;
-	float m_aspectRatio;
 	
 	// Multithreading
 	static void concurrentRender(ComplexPlane* objPointer, size_t startRow, size_t endRow);
