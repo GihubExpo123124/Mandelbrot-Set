@@ -2,10 +2,11 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include <cmath>
+#include <thread>
 #include <sstream>
 #include <vector>
+#include <complex>
 #include <string>
-
 using namespace sf;
 using namespace std;
 
@@ -15,28 +16,31 @@ const float BASE_HEIGHT = 4.0;
 const float BASE_ZOOM = 0.5;
 
 enum class State {
-	CALCULATING,DISPLAYING
+	CALCULATING, DISPLAYING
 };
 
 class ComplexPlane : public Drawable {
 	VertexArray m_vArray;
-	State m_State{};
+	State m_State;
 	Vector2f m_mouseLocation, m_plane_center, m_plane_size;
 	Vector2i m_pixel_size;
-	int m_zoomCount{};
+	int m_zoomCount;
 	float m_aspectRatio;
+	
+	// Multithreading
+	static void concurrentRender(ComplexPlane* objPointer, size_t startRow, size_t endRow);
 
-	public:
-		ComplexPlane(int pixelWidth, int pixelHeight);
-		void zoomIn();
-		void zoomOut();
-		void draw(RenderTarget& target, RenderStates states) const;
-		void updateRender();
-		void setCenter(Vector2i mousePixel);
-		void setMouseLocation(Vector2i mousePixel);
-		void loadText(Text& text);
-		size_t countIterations(Vector2f coord);
-		void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
-		Vector2f mapPixelToCoords(Vector2i mousePixel);
+public:
+	ComplexPlane(int pixelWidth, int pixelHeight);
+	void zoomIn();
+	void zoomOut();
+	void draw(RenderTarget& target, RenderStates states) const;
+	void updateRender();
+	void setCenter(Vector2i mousePixel);
+	void setMouseLocation(Vector2i mousePixel);
+	void loadText(Text& text);
+	size_t countIterations(Vector2f coord);
+	void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
+	Vector2f mapPixelToCoords(Vector2i mousePixel);
 
 };

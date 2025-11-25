@@ -1,9 +1,10 @@
 #include "ComplexPlane.h"
 
-int main() {
-	RenderWindow window(VideoMode(VideoMode::getDesktopMode().width/3, VideoMode::getDesktopMode().height/3), "Mandelbrot test");
-	ComplexPlane plane(VideoMode::getDesktopMode().width / 3, VideoMode::getDesktopMode().height / 3);
+// Group members: Joseph Pele and Simar Anand
 
+int main() {
+	RenderWindow window(VideoMode(VideoMode::getDesktopMode().width / 3, VideoMode::getDesktopMode().height / 3), "Mandelbrot test");
+	ComplexPlane plane(VideoMode::getDesktopMode().width / 3, VideoMode::getDesktopMode().height / 3);
 	Font font;
 	Text text;
 	if (!font.loadFromFile("calibri.ttf")) {
@@ -15,7 +16,7 @@ int main() {
 	plane.loadText(text);
 	text.setCharacterSize(15);
 	text.setFillColor(Color::White);
-	text.setStyle(Text::Italic | Text::Underlined | Text::Bold);
+	text.setStyle(Text::Underlined | Text::Bold);
 
 	while (window.isOpen()) {
 		Event event;
@@ -26,7 +27,7 @@ int main() {
 			}
 
 			if (event.type == Event::MouseButtonPressed) {
-				if (event.mouseButton.button == Mouse::Button::Left) {
+				if (event.mouseButton.button == Mouse::Button::Left){
 					plane.zoomIn();
 					plane.setCenter(Vector2i(event.mouseButton.x, event.mouseButton.y));
 				}
@@ -46,9 +47,9 @@ int main() {
 			}
 		}
 
-	
+
 		plane.updateRender();
-		
+
 		plane.loadText(text);
 
 		window.clear();
