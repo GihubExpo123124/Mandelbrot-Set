@@ -1,3 +1,6 @@
+#ifndef COMPLEX_PLANE_H
+#define COMPLEX_PLANE_H
+
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
@@ -45,3 +48,5 @@ public:
 	void loadText(Text& text);
 
 };
+
+#endif
