@@ -30,6 +30,10 @@ class ComplexPlane : public Drawable {
 	// Multithreading
 	static void concurrentRender(ComplexPlane* objPointer, size_t startRow, size_t endRow);
 
+	size_t countIterations(Vector2f coord);
+	void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
+	Vector2f mapPixelToCoords(Vector2i mousePixel);
+
 public:
 	ComplexPlane(int pixelWidth, int pixelHeight);
 	void zoomIn();
@@ -39,8 +43,5 @@ public:
 	void setCenter(Vector2i mousePixel);
 	void setMouseLocation(Vector2i mousePixel);
 	void loadText(Text& text);
-	size_t countIterations(Vector2f coord);
-	void iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b);
-	Vector2f mapPixelToCoords(Vector2i mousePixel);
 
 };
